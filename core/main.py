@@ -3,9 +3,9 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI
 
-from .database import create_database, delete_database, close_db_connection
-from .notes_router import router as notes_router
-from .user_router import router as user_router
+from core.database import create_database, delete_database, close_db_connection
+from core.notes_router import router as notes_router
+from core.user_router import router as user_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

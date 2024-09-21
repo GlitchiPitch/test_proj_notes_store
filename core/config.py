@@ -1,5 +1,4 @@
-from pydantic import BaseModel
-from pydantic.v1 import PostgresDsn
+from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import BaseSettings
 
 class NotesConfig(BaseModel):
@@ -9,7 +8,7 @@ class NotesConfig(BaseModel):
 
 class UserConfig(BaseModel):
     prefix: str = '/user'
-    register: str = '/register'
+    create: str = '/create'
 
 class DatabaseConfig(BaseModel):
     url: PostgresDsn = "postgresql+asyncpg://user:pass@0.0.0.0:5432/notes"

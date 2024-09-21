@@ -4,6 +4,10 @@ class UserCreate(BaseModel):
     username: str
     password: str
 
+class UserRead(BaseModel):
+    id: int
+    username: str
+
 class User(UserCreate):
     id: int
 
@@ -13,6 +17,9 @@ class User(UserCreate):
 class NoteCreate(BaseModel):
     title: str
     description: str | None
+
+class NoteRead(NoteCreate):
+    ...
 
 class Note(NoteCreate):
     id: int
