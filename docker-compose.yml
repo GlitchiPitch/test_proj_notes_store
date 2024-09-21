@@ -1,0 +1,19 @@
+services:
+
+  notes:
+    image: postgres
+    environment:
+      POSTGRES_DB: notes
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+
+  test_notes:
+    image: postgres
+    environment:
+      POSTGRES_DB: test_notes
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "7070:7070"
