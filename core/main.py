@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 from core.database import create_database, delete_database, close_db_connection
 from core.notes_router import router as notes_router
+from core.user_router import router as user_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -18,6 +19,7 @@ app = FastAPI(
 )
 
 app.include_router(notes_router)
+app.include_router(user_router)
 
 if __name__ == '__main__':
     uvicorn.run(app)

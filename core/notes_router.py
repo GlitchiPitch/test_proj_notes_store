@@ -8,9 +8,7 @@ from typing import List
 
 from core.speller import check_text
 
-router = APIRouter(
-    prefix='/notes'
-)
+router = APIRouter(prefix='/notes')
 
 @router.get('/get_all', response_model=List[Note])
 async def get_all_notes(
