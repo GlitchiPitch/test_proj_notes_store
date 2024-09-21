@@ -2,8 +2,8 @@ from fastapi.security import HTTPBasicCredentials, HTTPBasic
 from sqlalchemy import select
 from starlette import status
 from fastapi import Depends, HTTPException
-from core.database import session_getter
-from core.models import User
+from .database import session_getter
+from .models import User
 from passlib.context import CryptContext
 
 security = HTTPBasic()

@@ -1,16 +1,17 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy import select
-from core.auth import get_current_user
-from core.database import session_getter
-from core.models import User, Note
-from core.schemas import NoteCreate
+from .auth import get_current_user
+from .config import settings
+from .database import session_getter
+from .models import User, Note
+from .schemas import NoteCreate
 from typing import List
 
 from core.speller import check_text
 
-router = APIRouter(prefix='/notes')
+router = APIRouter(prefix=settings.notes.prefix)
 
-@router.get('/get_all', response_model=List[Note])
+@router.get(settings.notes.get_all, response_model=List[Note])
 async def get_all_notes(
         session = Depends(session_getter),
         current_user: User = Depends(get_current_user),
@@ -20,7 +21,7 @@ async def get_all_notes(
     notes = result.scalars().all()
     return notes
 
-@router.post('/create', response_model=Note)
+@router.post(settings.notes.create, response_model=Note)
 async def create_note(
         note_data: NoteCreate,
         session = Depends(session_getter),

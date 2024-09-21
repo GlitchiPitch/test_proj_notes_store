@@ -1,17 +1,19 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
-from core.database import session_getter
-from core.models import User
-from core.schemas import UserCreate
+
+from .config import settings
+from .database import session_getter
+from .models import User
+from .schemas import UserCreate
 from passlib.context import CryptContext
 
-router = APIRouter(prefix="/user")
+router = APIRouter(prefix=settings.user.prefix)
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 async def get_password_hash(password):
     return pwd_context.hash(password)
 
-@router.post("/register", response_model=User)
+@router.post(settings.user.register, response_model=User)
 async def register_user(
     user_data: UserCreate,
     session=Depends(session_getter),

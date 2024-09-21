@@ -2,12 +2,13 @@ import pytest
 from httpx import AsyncClient, ASGITransport
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
+from core.config import settings
 from core.database import session_getter
 from core.main import app
 from core.models import Base
 
 engine = create_async_engine(
-    "postgresql+asyncpg://user:pass@localhost:5432/notes",
+    url=settings.db.test_url,
     echo=True
 )
 AsyncSessionLocal = async_sessionmaker(
